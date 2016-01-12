@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Zaloguj się</title>
+	<!--STYLES-->
+	<link rel="stylesheet" href="/styles/font-awesome.min.css">
+	<link rel="stylesheet" href="/styles/login.css">
+	<link rel="stylesheet" href="/styles/materialize.min.css">
+	<!--STYLES END-->
+</head>
+<body ng-app="SignInModule" ng-controller="SignInController" ng-cloak>
+	<div class="row login-card">
+		<div class="col s4 offset-s4">
+			<div class="card blue-grey darken-1 ">
+				<form ng-submit="signInSubmitForm()" id="login-form" class="form-login" name="login">
+					<div class="card-content white-text">
+						<span class="card-title">Logowanie</span>
+						<div class="input-field">
+							<input type="email" placeholder="np. test@mail.pl" id="email-field" class="validate" name="email" required/>
+							<label for="email-field" data-error="Błąd">Email</label>
+						</div>
+						<div class="input-field">
+							<input type="password" placeholder="******" id="pass-field" class="validate" name="password" required/>
+							<label for="pass-field" data-error="Błąd">Hasło</label>
+						</div>
+					</div>
+					<div class="card-action">
+						<button class="waves-effect waves-teal btn-flat" type="submit" ng-disabled="login.$invalid">
+							<span ng-show="!loginForm.loading">Create Account</span>
+							<span class="overlord-loading-spinner fa fa-spinner" ng-show="loginForm.loading" ></span>
+							<span ng-show="loginForm.loading">Preparing your new account...</span>
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<!--SCRIPTS-->
+	<script src="/js/dependencies/sails.io.js"></script>
+	<script src="/js/dependencies/jquery-2.2.0.min.js"></script>
+	<script src="/js/dependencies/angular.min.js"></script>
+	<script src="/js/dependencies/materialize.min.js"></script>
+	<script src="/js/public/login/SignInController.js"></script>
+	<script src="/js/public/login/SignInModule.js"></script>
+	<!--SCRIPTS END-->
+</body>
+</html>
+<!-- 
+<form class="col s12">
+  <div class="row">
+    <div class="input-field col s6">
+      <input placeholder="Placeholder" id="first_name" type="text" class="validate">
+      <label for="first_name">First Name</label>
+    </div>
+    <div class="input-field col s6">
+      <input id="last_name" type="text" class="validate">
+      <label for="last_name">Last Name</label>
+    </div>
+  </div>
+  <div class="row">
+    <div class="input-field col s12">
+      <input disabled value="I am not editable" id="disabled" type="text" class="validate">
+      <label for="disabled">Disabled</label>
+    </div>
+  </div>
+  <div class="row">
+    <div class="input-field col s12">
+      <input id="password" type="password" class="validate">
+      <label for="password">Password</label>
+    </div>
+  </div>
+  <div class="row">
+    <div class="input-field col s12">
+      <input id="email" type="email" class="validate">
+      <label for="email">Email</label>
+    </div>
+  </div>
+</form> -->
