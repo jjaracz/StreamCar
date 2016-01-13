@@ -5,8 +5,7 @@ angular.module('SignInModule').controller('SignInController', ['$scope', '$http'
 	}
 	$scope.signInSubmitForm = function(){
 		$scope.loginForm.loading = true;
-		console.log('SUBMIT !!');
-		$http.post('/login', {
+		$http.put('/login', {
 			email: $scope.loginForm.email,
 			pass: $scope.loginForm.password
 		})
@@ -16,7 +15,7 @@ angular.module('SignInModule').controller('SignInController', ['$scope', '$http'
 		.catch(function onError(sailsResponse){
 			console.log(sailsResponse);
 		})
-		.finaly(function eitherWay(){
+		.finally(function eitherWay(){
 			$scope.loginForm.location = false;
 		});
 	}
