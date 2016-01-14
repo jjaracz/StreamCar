@@ -15,8 +15,12 @@
 module.exports.bootstrap = function(cb) {
 
   RASPI.init(function(){
+
+    // On connect event
     sails.io.on('connect', function(client){
       sails.log('User connected');
+
+      // When start, set pins
       client.on('setPins', function(data){
         sails.log('Seting Pins ...');
         for (var i = 0; i < sails.config.enginePins.length; i++) {
@@ -26,6 +30,8 @@ module.exports.bootstrap = function(cb) {
           sails.config.enginePWM[i] = new PWM({pin: sails.config.enginePWM[i]});
         }
       });
+
+      // When user navigate on circle in controll app
       client.on('move', function(data){
         sails.log(data);
         sails.controllers.car.index(client, data);
