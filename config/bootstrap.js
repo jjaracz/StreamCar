@@ -11,7 +11,7 @@
  var RASPI = require('raspi'),
     GPIO = require('raspi-gpio').GPIO,
     PWM = require('raspi-pwm').PWM;
-    
+
 module.exports.bootstrap = function(cb) {
 
   RASPI.init(function(){
@@ -19,11 +19,11 @@ module.exports.bootstrap = function(cb) {
       sails.log('User connected');
       client.on('setPins', function(data){
         sails.log('Seting Pins ...');
-        for (var i = 0; i < PINS_ENGINE.length; i++) {
-          PINS_ENGINE[i] = new GPIO.digitalOutput({pin: PINS_ENGINE[i]});
+        for (var i = 0; i < sails.config.enginePins.length; i++) {
+          sails.config.enginePins[i] = new GPIO.digitalOutput({pin: sails.config.enginePins[i]});
         }
-        for (var i = 0; i < PINS_PWM.length; i++) {
-          PINS_PWM[i] = new PWM({pin: PINS_PWM[i]});
+        for (var i = 0; i < sails.config.enginePWM.length; i++) {
+          sails.config.enginePWM[i] = new PWM({pin: sails.config.enginePWM[i]});
         }
       });
       client.on('move', function(data){
