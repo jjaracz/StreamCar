@@ -17,8 +17,9 @@ module.exports = {
     },
     // User Email like test@test.pl
     email: {
-      type: 'string',
-      required: true
+      type: 'email',
+      required: true,
+      unique: true
     },
 
     password: {
@@ -26,7 +27,7 @@ module.exports = {
       required: true
     },
     // Status of login
-    loggedIn: 'boolean',
+    online: 'boolean',
 
     lastLoggedIn: {
       type: 'date',
@@ -47,6 +48,27 @@ module.exports = {
         }
         if(user) next(new Error('User with this email exist'));
       })
+    });
+  },
+  loginUser: function(email, password, next){
+    this.findOne({
+      email: email
+    }, function(err, user) {
+        if(user){
+          bcrypt.compare(password, user.password, function(err, match) {
+              if(match){
+                user.online = true;
+                sails.log("Login: " + user.email);
+                next(null, {data: 200, id: user.id, name: user.name});
+              }else{
+                sails.log(err);
+                next(err, {data: 500});
+              }
+          });
+        }else{
+          sails.log(err);
+          next(err, {data: 404});
+        }
     });
   }
 };

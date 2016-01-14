@@ -13,10 +13,17 @@ angular.module('SignInModule').controller('SignInController', ['$scope', '$http'
 			window.location = '/user';
 		})
 		.catch(function onError(sailsResponse){
-			console.log(sailsResponse);
+			if(sailsResponse.status === '400' || '404' ){
+				 Materialize.toast('Niepoprawny email/hasło', 3000, 'red darken-4');
+				 $scope.loginForm.loading = false;
+				 return;
+			}
+			Materialize.toast('Niespodziewany błąd spróbuj później', 3000, 'red darken-4');
+			$scope.loginForm.loading = false;
+			return;
 		})
 		.finally(function eitherWay(){
-			$scope.loginForm.location = false;
+			$scope.loginForm.loading = false;
 		});
 	}
 }]);
