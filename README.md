@@ -1,17 +1,17 @@
-#** StreamCar
+# ** StreamCar
 # Wykorzystanie
 ## 1. API
-###* Użytkownicy
-####* Lista użytkowników
+### * Użytkownicy
+#### * Lista użytkowników
 `/user/`
-####* Dodawanie
+#### * Dodawanie
 `/user/create?name=nazwa&email=test@tes.pl&password=test`
-####* Usuwanie
+#### * Usuwanie
 `/user/destroy/:id`
-####* Edytowanie
+#### * Edytowanie
 `/user/update/:id?name=inna_nazwa`
 ## 1. Sockety
-###* Auto
+### * Auto
   Pierwsze co musisz zrobić to wysłać zdarzenie `setPins` bez żadnych danych, następnie będziesz mógł wysyłać zdarzenie poruszania
 ####* Poruszanie
   - nazwa zdarzenia: `move`
