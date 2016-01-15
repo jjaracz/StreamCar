@@ -13,13 +13,13 @@
 ## 2. Sockety
 ### Auto
   Pierwsze co musisz zrobić to wysłać zdarzenie `setPins` bez żadnych danych, następnie będziesz mógł wysyłać zdarzenie poruszania
-#### Poruszanie
-  - nazwa zdarzenia: `move`
-  - dane:
+  #### Poruszanie
+    - nazwa zdarzenia: `move`
+    - dane:
     ```
     {
       direction: "left", // albo "right"
       degree: 50, // stopień obrotu
-      power: 100 // w procętach, do przodu na plusie, na minusie do tyłu
+      power: 100 // w procentach, do przodu na plusie, na minusie do tyłu
     }
     ```
