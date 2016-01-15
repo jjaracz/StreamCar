@@ -15,6 +15,7 @@
 - dane (PUT):
   - email: `email`
   - pass: `hasło`
+
 ## 2. Sockety
 ### Auto
 
