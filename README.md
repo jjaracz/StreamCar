@@ -16,6 +16,7 @@
 #### Ustawienie pinów (Oczekuję)
 - nazwa zdarzenia: `setPins`
 - dane: `brak`
+
 #### Poruszanie (Oczekuję)
 - nazwa zdarzenia: `move`
 - dane:
@@ -26,6 +27,7 @@
   power: 100 // w procentach, do przodu na plusie, na minusie do tyłu
 }
 ```
+
 #### Przeszkoda (Emituję)
 Emituję zdarzenie tylko raz gdy odległość jest mniejsza niż 100 cm:
 - nazwa zdarzenia: `colisionDetect`
@@ -35,9 +37,11 @@ Emituję zdarzenie tylko raz gdy odległość jest mniejsza niż 100 cm:
   distance: 20 // odległość do przeszkody w cm
 }
 ```
+
 #### Wyłączenie czujnika odległości (Oczekuję)
 - nazwa zdarzenia: `turnOffSensor`
 - dane: `brak`
+
 #### Włączenia czujnika odległości (Oczekuję)
 - nazwa zdarzenia: `turnOnSensor`
 - dane: `brak`
