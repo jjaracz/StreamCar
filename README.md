@@ -12,7 +12,10 @@
 `/user/update/:id?name=inna_nazwa`
 ## 2. Sockety
 ### Auto
-Pierwsze co musisz zrobić to wysłać zdarzenie `setPins` bez żadnych danych, następnie będziesz mógł wysyłać zdarzenie poruszania
+
+#### Ustawienie pinów (Oczekuję)
+- nazwa zdarzenia: `setPins`
+- dane: `brak`
 #### Poruszanie (Oczekuję)
 - nazwa zdarzenia: `move`
 - dane:
@@ -23,12 +26,18 @@ Pierwsze co musisz zrobić to wysłać zdarzenie `setPins` bez żadnych danych,
   power: 100 // w procentach, do przodu na plusie, na minusie do tyłu
 }
 ```
-#### Czujnik Odległości (Emituję)
+#### Przeszkoda (Emituję)
 Emituję zdarzenie tylko raz gdy odległość jest mniejsza niż 100 cm:
-- nazwa zdarzenia: `obstacle`
+- nazwa zdarzenia: `colisionDetect`
 - dane:
 ```
 {
-  distance: 20 // odległość do najlbiższej przeszkody w cm
+  distance: 20 // odległość do przeszkody w cm
 }
 ```
+#### Wyłączenie czujnika odległości (Oczekuję)
+- nazwa zdarzenia: `turnOffSensor`
+- dane: `brak`
+#### Włączenia czujnika odległości (Oczekuję)
+- nazwa zdarzenia: `turnOnSensor`
+- dane: `brak`
