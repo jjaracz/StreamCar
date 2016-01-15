@@ -14,8 +14,8 @@
 ### Auto
   Pierwsze co musisz zrobić to wysłać zdarzenie `setPins` bez żadnych danych, następnie będziesz mógł wysyłać zdarzenie poruszania
 #### Poruszanie
-    - nazwa zdarzenia: `move`
-    - dane:
+    - nazwa zdarzenia `move`
+    - dane
 ```
 {
   direction: "left", // albo "right"
