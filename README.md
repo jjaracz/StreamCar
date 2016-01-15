@@ -10,6 +10,11 @@
 `/user/destroy/:id`
 #### Edytowanie
 `/user/update/:id?name=inna_nazwa`
+#### Logowanie
+`/login`
+- dane (PUT):
+  - email: `email`
+  - pass: `hasło`
 ## 2. Sockety
 ### Auto
 
