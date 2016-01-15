@@ -18,7 +18,7 @@
 - response:
   - błędne dane: `header: 404`
   - błąd serwer: `header: 500`
-  - poprawnie zalogowany: `header: 202`
+  - poprawnie zalogowany: `header: 200`
 
 ## 2. Sockety
 ### Auto
