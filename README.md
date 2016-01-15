@@ -15,6 +15,10 @@
 - dane (PUT):
   - email: `email`
   - pass: `hasło`
+- response:
+  - błędne dane: `header: 404`
+  - błąd serwer: `header: 500`
+  - poprawnie zalogowany: `header: 202`
 
 ## 2. Sockety
 ### Auto
