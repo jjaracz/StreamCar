@@ -1,0 +1,78 @@
+{
+  "data": {
+    "car": [],
+    "user": [
+      {
+        "name": "Janek Jaracz",
+        "email": "j.jaracz@poczta.pl",
+        "password": "$2a$08$uvh7RD4GB.6cj/2G6bAsQ.2V.s6pShRkxusV2obbnY3/WXdGv90b.",
+        "lastLoggedIn": "1970-01-01T00:00:00.000Z",
+        "createdAt": "2016-01-13T17:38:14.825Z",
+        "updatedAt": "2016-01-13T17:38:14.825Z",
+        "id": 24
+      },
+      {
+        "name": "Janek Jaracz",
+        "email": "o@o.pl",
+        "password": "$2a$08$tTHAwsJfYThJ9gdo2kP2tO9I1hRlflLRh88C1zQ2uveWAWDPds1PG",
+        "lastLoggedIn": "1970-01-01T00:00:00.000Z",
+        "createdAt": "2016-01-13T17:41:32.755Z",
+        "updatedAt": "2016-01-13T17:41:32.755Z",
+        "id": 25
+      }
+    ]
+  },
+  "schema": {
+    "car": {
+      "id": {
+        "type": "integer",
+        "autoIncrement": true,
+        "primaryKey": true,
+        "unique": true
+      },
+      "createdAt": {
+        "type": "datetime"
+      },
+      "updatedAt": {
+        "type": "datetime"
+      }
+    },
+    "user": {
+      "name": {
+        "type": "string"
+      },
+      "email": {
+        "type": "string",
+        "unique": true
+      },
+      "password": {
+        "type": "string"
+      },
+      "online": {
+        "type": "boolean"
+      },
+      "lastLoggedIn": {
+        "type": "date",
+        "defaultsTo": "1970-01-01T00:00:00.000Z"
+      },
+      "id": {
+        "type": "integer",
+        "autoIncrement": true,
+        "primaryKey": true,
+        "unique": true
+      },
+      "createdAt": {
+        "type": "datetime"
+      },
+      "updatedAt": {
+        "type": "datetime"
+      }
+    }
+  },
+  "counters": {
+    "user": {
+      "id": 25
+    },
+    "car": {}
+  }
+}
