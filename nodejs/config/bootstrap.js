@@ -8,13 +8,9 @@
  * For more information on bootstrapping your app, check out:
  * http://sailsjs.org/#!/documentation/reference/sails.config/sails.config.bootstrap.html
  */
- var RASPI = require('raspi'),
-    GPIO = require('raspi-gpio').GPIO,
-    PWM = require('raspi-pwm').PWM;
+ var RASPI = require('raspi');
 
 module.exports.bootstrap = function(cb) {
-  var GPIO_PINS = sails.config.enginePins,
-    PWM_PINS = sails.config.enginePWM;
 
   RASPI.init(function(){
 
@@ -25,18 +21,13 @@ module.exports.bootstrap = function(cb) {
       // When start, set pins
       client.on('setPins', function(data){
         sails.log('Seting Pins ...');
-        for (var i = 0; i < GPIO_PINS.length; i++) {
-          GPIO_PINS[i] = new GPIO.digitalOutput({pin: GPIO_PINS[i]});
-        }
-        for (var i = 0; i < PWM_PINS.length; i++) {
-          PWM_PINS[i] = new PWM({pin: PWM_PINS[i]});
-        }
+        sails.controllers.car.setPins();
       });
 
       // When user navigate on circle in controll app
       client.on('move', function(data){
         sails.log(data);
-        sails.controllers.car.index(client, data, GPIO_PINS, PWM_PINS);
+        sails.controllers.car.move(client, data);
       })
     })
   })
