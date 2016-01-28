@@ -6,35 +6,38 @@
 */
 
 var raspi = require('raspi'),
-  GPIO = require('raspi-gpio');
+  GPIO = require('raspi-gpio'),
+  GPIO_PINS = {},
+  PWM_PINS = {};
 
 module.exports = {
 
-  attributes: {
-
+  setPins: function(gpio, pwm){
+    GPIO_PINS = gpio;
+    PWM_PINS = pwm;
   },
   spinLeft: function(degree){
     var pwm = Math.round(90(degree * 1024));
-    sails.config.enginePins.engineSpinLeft.write(GPIO.HIGH);
-    sails.config.enginePins.engineSpinRight.write(GPIO.LOW);
-    sails.config.enginePWM.engineSpinPWM.write(pwm);
+    GPIO_PINS.engineSpinLeft.write(GPIO.HIGH);
+    GPIO_PINS.engineSpinRight.write(GPIO.LOW);
+    PWM_PINS.engineSpinPWM.write(pwm);
   },
   spinRight: function(degree){
     var pwm = Math.round(90(degree * 1024));
-    sails.config.enginePins.engineSpinRight.write(GPIO.HIGH);
-    sails.config.enginePins.engineSpinLeft.write(GPIO.LOW);
-    sails.config.enginePWM.engineSpinPWM.write(pwm);
+    GPIO_PINS.engineSpinRight.write(GPIO.HIGH);
+    GPIO_PINS.engineSpinLeft.write(GPIO.LOW);
+    PWM_PINS.engineSpinPWM.write(pwm);
   },
   power: function(pow){
     var pwm = Math.round(100(pow * 1024));
     if(pow > 0){
-      sails.config.enginePins.enginePowerForward.write(GPIO.HIGH);
-      sails.config.enginePins.enginePowerBack.write(GPIO.LOW);
-      sails.config.enginePWM.enginePowerPWM.write(pwm);
+      GPIO_PINS.enginePowerForward.write(GPIO.HIGH);
+      GPIO_PINS.enginePowerBack.write(GPIO.LOW);
+      PWM_PINS.enginePowerPWM.write(pwm);
     }else{
-      sails.config.enginePins.enginePowerBack.write(GPIO.HIGH);
-      sails.config.enginePins.enginePowerForward.write(GPIO.LOW);
-      sails.config.enginePWM.enginePowerPWM.write(pwm);
+      GPIO_PINS.enginePowerBack.write(GPIO.HIGH);
+      GPIO_PINS.enginePowerForward.write(GPIO.LOW);
+      PWM_PINS.enginePowerPWM.write(pwm);
     }
   },
   distance: function(){

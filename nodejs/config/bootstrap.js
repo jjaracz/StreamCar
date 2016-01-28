@@ -10,7 +10,9 @@
  */
  var RASPI = require('raspi'),
     GPIO = require('raspi-gpio').GPIO,
-    PWM = require('raspi-pwm').PWM;
+    PWM = require('raspi-pwm').PWM,
+    GPIO_PINS = sails.config.enginePins,
+    PWM_PINS = sails.config.enginePWM;
 
 module.exports.bootstrap = function(cb) {
 
@@ -23,18 +25,18 @@ module.exports.bootstrap = function(cb) {
       // When start, set pins
       client.on('setPins', function(data){
         sails.log('Seting Pins ...');
-        for (var i = 0; i < sails.config.enginePins.length; i++) {
-          sails.config.enginePins[i] = new GPIO.digitalOutput({pin: sails.config.enginePins[i]});
+        for (var i = 0; i < GPIO_PINS.length; i++) {
+          GPIO_PINS[i] = new GPIO.digitalOutput({pin: GPIO_PINS[i]});
         }
-        for (var i = 0; i < sails.config.enginePWM.length; i++) {
-          sails.config.enginePWM[i] = new PWM({pin: sails.config.enginePWM[i]});
+        for (var i = 0; i < PWM_PINS.length; i++) {
+          PWM_PINS[i] = new PWM({pin: PWM_PINS[i]});
         }
       });
 
       // When user navigate on circle in controll app
       client.on('move', function(data){
         sails.log(data);
-        sails.controllers.car.index(client, data);
+        sails.controllers.car.index(client, data, GPIO_PINS, PWM_PINS);
       })
     })
   })
