@@ -15,21 +15,23 @@ module.exports = {
   setPins: function(gpio, pwm){
     GPIO_PINS = gpio;
     PWM_PINS = pwm;
+    sails.log(GPIO_PINS);
+    sails.log(PWM_PINS);
   },
   spinLeft: function(degree){
-    var pwm = Math.round(90(degree * 1024));
+    var pwm = Math.round(90/(degree * 1024));
     GPIO_PINS.engineSpinLeft.write(GPIO.HIGH);
     GPIO_PINS.engineSpinRight.write(GPIO.LOW);
     PWM_PINS.engineSpinPWM.write(pwm);
   },
   spinRight: function(degree){
-    var pwm = Math.round(90(degree * 1024));
+    var pwm = Math.round(90/(degree * 1024));
     GPIO_PINS.engineSpinRight.write(GPIO.HIGH);
     GPIO_PINS.engineSpinLeft.write(GPIO.LOW);
     PWM_PINS.engineSpinPWM.write(pwm);
   },
   power: function(pow){
-    var pwm = Math.round(100(pow * 1024));
+    var pwm = Math.round(100/(pow * 1024));
     if(pow > 0){
       GPIO_PINS.enginePowerForward.write(GPIO.HIGH);
       GPIO_PINS.enginePowerBack.write(GPIO.LOW);
