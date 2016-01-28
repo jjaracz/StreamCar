@@ -6,8 +6,8 @@
 */
 
 var raspi = require('raspi'),
-  GPIO = require('raspi-gpio').GPIO,
-  PWM = require('raspi-pwm').PWM,
+  GPIO = require('raspi-gpio'),
+  PWM = require('raspi-pwm'),
   GPIO_PINS = {},
   PWM_PINS = {};
 
@@ -16,7 +16,7 @@ module.exports = {
 
   setPins: function(){
     for (var i in sails.config.enginePins) {
-      GPIO_PINS[i] = new GPIO.digitalOutput({pin: sails.config.enginePins[i]});
+      GPIO_PINS[i] = new GPIO.DigitalOutput({pin: sails.config.enginePins[i]});
     }
     for (var i in sails.config.enginePWM) {
       PWM_PINS[i] = new PWM({pin: sails.config.enginePWM[i]});
