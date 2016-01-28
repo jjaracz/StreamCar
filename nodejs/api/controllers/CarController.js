@@ -7,6 +7,7 @@
 
 module.exports = {
 	index: function(client, data, GPIO_PINS, PWM_PINS){
+		Car.setPins(GPIO_PINS, PWM_PINS);
 		if(data.direction == 'left')
 			Car.spinLeft(data.degree);
 		else if(data.direction == 'right')
