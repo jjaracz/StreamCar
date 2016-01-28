@@ -10,11 +10,11 @@
  */
  var RASPI = require('raspi'),
     GPIO = require('raspi-gpio').GPIO,
-    PWM = require('raspi-pwm').PWM,
-    GPIO_PINS = sails.config.enginePins,
-    PWM_PINS = sails.config.enginePWM;
+    PWM = require('raspi-pwm').PWM;
 
 module.exports.bootstrap = function(cb) {
+  var GPIO_PINS = sails.config.enginePins,
+    PWM_PINS = sails.config.enginePWM;
 
   RASPI.init(function(){
 
