@@ -5,7 +5,7 @@ var settings = {
       ARC : {
           RADIUS : 190,
           THICKNESS : 1,
-          COLOR : "black",
+          COLOR : "black"
       }
-  },
+  }
 };

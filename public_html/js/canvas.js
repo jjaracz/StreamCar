@@ -5,23 +5,23 @@ var canvas = (function(){
    this.init = function(canvasObject){
        this._canvasObject = canvasObject;
        this._ctx = this._canvasObject.getContext("2d");
-       this.drawControls();
+       this._drawControls();
    };
    
-   this._getCenter = function(){
+   this.getCenter = function(){
        return {
            x:settings.CANVAS.WIDTH / 2,
            y:settings.CANVAS.HEIGHT / 2
        };
    };
    
-   this.drawControls = function(){
+   this._drawControls = function(){
        this.drawCircle();
        this.drawMainLine();
    };
    
    this.drawCircle = function(){
-       var center = this._getCenter();
+       var center = this.getCenter();
        this._ctx.beginPath();
        this._ctx.arc(center.x,center.y,settings.CANVAS.ARC.RADIUS,0,2*Math.PI);
        this._ctx.strokeStyle = settings.CANVAS.ARC.COLOR;
@@ -33,22 +33,23 @@ var canvas = (function(){
    };
    
    this._canLineExist = function(x,y){
-       var center = this._getCenter();
+       var center = this.getCenter();
        return (Math.sqrt(Math.pow(x - center.x,2) + Math.pow(y - center.y,2)) <= settings.CANVAS.ARC.RADIUS);
    };
    
    this.drawLine = function(x,y){
-       var center = this._getCenter();
+       this._clearCanvas();
+       
+       var center = this.getCenter();
        this._ctx.beginPath();
        this._ctx.moveTo(center.x,center.y);
        this._ctx.lineTo(x,y);
        this._ctx.stroke();
-       
-       this._clearCanvas();
+       this._drawControls();
    };
    
    this.drawMainLine = function(){
-       var center = this._getCenter();
+       var center = this.getCenter();
        
        this._ctx.beginPath();
        this._ctx.moveTo(center.x,center.y);
