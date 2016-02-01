@@ -9,8 +9,9 @@ var system = (function (settings) {
         if (res) {
             this.canvas.drawLine(x, y);
             var data = {
-                direct : this.canvas.getDirection(),
-                power : Math.getRadiusRatio(center.x, center.y, x, y, radius)
+                direct : this.canvas.getDirection(x,y),
+                power : Math.getRadiusRatio(center.x, center.y, x, y, radius),
+                degree : Math.calculateAngleInCircle(x,y)
             };
             socket.emit('move',data);
         }
