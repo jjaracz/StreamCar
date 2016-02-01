@@ -15,9 +15,37 @@ var canvas = (function(){
        };
    };
    
+   this.getDirection = function(x,y){
+       var direct = {
+         x: null,
+         y: null
+       };
+       
+       var half = {
+           x: settings.CANVAS.WIDTH / 2,
+           y: settings.CANVAS.HEIGHT / 2
+       };
+       
+       if(x >= half.x){
+           direct.x = settings.DIRECT.RIGHT;
+       } else {
+           direct.x = settings.DIRECT.LEFT;
+       }
+       
+       if(y >= half.y){
+           direct.y = settings.DIRECT.DOWN;
+       } else {
+           direct.y = settings.DIRECT.UP;
+       }
+       
+       return {
+           x:direct.x,
+           y:direct.y
+       };
+   };
+   
    this._drawControls = function(){
        this.drawCircle();
-       this.drawMainLine();
    };
    
    this.drawCircle = function(){
