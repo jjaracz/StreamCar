@@ -41,11 +41,9 @@ module.exports = {
     if(pow > 0){
       GPIO_PINS.enginePowerForward.write(GPIO.HIGH);
       GPIO_PINS.enginePowerBack.write(GPIO.LOW);
-      PWM_PINS.enginePowerPWM.write(pwm);
     }else{
       GPIO_PINS.enginePowerBack.write(GPIO.HIGH);
       GPIO_PINS.enginePowerForward.write(GPIO.LOW);
-      PWM_PINS.enginePowerPWM.write(pwm);
     }
   },
   distance: function(){
