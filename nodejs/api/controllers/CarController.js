@@ -11,10 +11,28 @@ module.exports = {
 		Car.setPins();
 	},
 	move: function(client, data){
-		if(data.direction == 'left')
+		if(data.direction.x == 1)
 			Car.spinLeft(data.degree);
-		else if(data.direction == 'right')
+		else if(data.direction.x == 2)
 			Car.spinRight(data.degree);
-		Car.power(data.power);
+		if(data.direction.y == 3)
+			Car.forward();
+		else if(data.direct.y == 4)
+			Car.backward();
+		if(data.power == 0)
+			Car.stop();
+	},
+	turnoff: function(data){
+		if(data.sensor == 1)
+			Car.distanceOff();
+		else if(data.sensor == 2)
+			Car.beaconsOff();
+	},
+	turnOn: function(data){
+		if(data.sensor == 1)
+			Car.distanceOn();
+		else if(data.sensor == 2)
+			Car.beaconsOn();
 	}
+
 };

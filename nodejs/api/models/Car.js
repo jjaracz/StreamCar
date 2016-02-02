@@ -8,8 +8,10 @@
 var raspi = require('raspi'),
   GPIO = require('raspi-gpio'),
   PWM = require('raspi-pwm'),
+  DISTANCE = false;
   GPIO_PINS = {},
-  PWM_PINS = {};
+  PWM_PINS = {},
+  SENSOR_PINS = {};
 
 module.exports = {
 
@@ -21,32 +23,39 @@ module.exports = {
     for (var i in sails.config.enginePWM) {
       PWM_PINS[i] = new PWM({pin: sails.config.enginePWM[i]});
     }
+    SENSOR_PINS[]
     sails.log(GPIO_PINS);
     sails.log(PWM_PINS);
   },
   spinLeft: function(degree){
     var pwm = Math.round(90/(degree * 1024));
-    GPIO_PINS.engineSpinLeft.write(GPIO.HIGH);
     GPIO_PINS.engineSpinRight.write(GPIO.LOW);
+    GPIO_PINS.engineSpinLeft.write(GPIO.HIGH);
     PWM_PINS.engineSpinPWM.write(pwm);
   },
   spinRight: function(degree){
     var pwm = Math.round(90/(degree * 1024));
-    GPIO_PINS.engineSpinRight.write(GPIO.HIGH);
     GPIO_PINS.engineSpinLeft.write(GPIO.LOW);
+    GPIO_PINS.engineSpinRight.write(GPIO.HIGH);
     PWM_PINS.engineSpinPWM.write(pwm);
   },
-  power: function(pow){
-    var pwm = Math.round(100/(pow * 1024));
-    if(pow > 0){
-      GPIO_PINS.enginePowerForward.write(GPIO.HIGH);
-      GPIO_PINS.enginePowerBack.write(GPIO.LOW);
-    }else{
-      GPIO_PINS.enginePowerBack.write(GPIO.HIGH);
-      GPIO_PINS.enginePowerForward.write(GPIO.LOW);
-    }
+  forward: function(){
+    GPIO_PINS.enginePowerBack.write(GPIO.LOW);
+    GPIO_PINS.enginePowerForward.write(GPIO.HIGH);
   },
-  distance: function(){
-    // TODO: calculate distance
+  backward: function(){
+    GPIO_PINS.enginePowerForward.write(GPIO.LOW);
+    GPIO_PINS.enginePowerBack.write(GPIO.HIGH);
   },
+  stop: function(){
+    GPIO_PINS.enginePowerForward.write(GPIO.LOW);
+    GPIO_PINS.enginePowerBack.write(GPIO.LOW);
+  },
+  distanceOff: function(){
+    DISTANCE = false;
+  },
+  distanceOn: function(){
+    DISTANCE = true;
+    
+  }
 };

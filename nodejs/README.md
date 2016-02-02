@@ -50,8 +50,18 @@ Emituję zdarzenie tylko raz gdy odległość jest mniejsza niż 100 cm:
 
 #### Wyłączenie czujnika odległości (Oczekuję)
 - nazwa zdarzenia: `turnOffSensor`
-- dane: `brak`
+- dane:
+```
+{
+  sensor: "distance" // albo "beacons"
+}
+```
 
 #### Włączenia czujnika odległości (Oczekuję)
 - nazwa zdarzenia: `turnOnSensor`
-- dane: `brak`
+- dane:
+```
+{
+  sensor: "distance" // albo "beacons"
+}
+```

@@ -26,9 +26,20 @@ module.exports.bootstrap = function(cb) {
 
       // When user navigate on circle in controll app
       client.on('move', function(data){
-        sails.log(data);
         sails.controllers.car.move(client, data);
-      })
+      });
+
+      // When user want to turn off distance sensor
+      client.on('turnOffSensor', function(data){
+        sails.log('Turn off '+data.sensor+' sensor.');
+        sails.controllers.car.turnoff(data);
+      });
+
+      // When user want to turn on distance sensor
+      client.on('turnOnSensor', function(data){
+        sails.log('Turn on '+data.sensor+' sensor.');
+        sails.controllers.car.turnon(data);
+      });
     })
   })
 
