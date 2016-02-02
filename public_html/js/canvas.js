@@ -50,8 +50,15 @@ var canvas = (function(){
    
    this.drawCircle = function(){
        var center = this.getCenter();
+       var gradient = this._ctx.createRadialGradient(200,200,1,200,200,190);
+       gradient.addColorStop(0,'yellow');
+       
+       gradient.addColorStop(1,'red');
+       
        this._ctx.beginPath();
        this._ctx.arc(center.x,center.y,settings.CANVAS.ARC.RADIUS,0,2*Math.PI);
+       this._ctx.fillStyle = gradient;
+       this._ctx.fill();
        this._ctx.strokeStyle = settings.CANVAS.ARC.COLOR;
        this._ctx.stroke();
    };
@@ -69,11 +76,11 @@ var canvas = (function(){
        this._clearCanvas();
        
        var center = this.getCenter();
+       this._drawControls();
        this._ctx.beginPath();
        this._ctx.moveTo(center.x,center.y);
        this._ctx.lineTo(x,y);
        this._ctx.stroke();
-       this._drawControls();
    };
    
    this.drawMainLine = function(){

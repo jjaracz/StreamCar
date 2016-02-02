@@ -13,14 +13,15 @@ var system = (function (settings) {
                 power : Math.getRadiusRatio(center.x, center.y, x, y, radius),
                 degree : Math.calculateAngleInCircle(x,y)
             };
-            socket.emit('move',data);
+            console.log(data);
+          //  socket.emit('move',data);
         }
     };
 
     this.init = function (canvas) {
         this.canvas = canvas;
         var self = this;
-        socket.emit('setPins');
+       // socket.emit('setPins');
 
         $("canvas#main-canvas").mousemove(function (e) {
             var parentOffset = $(this).offset();

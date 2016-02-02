@@ -6,6 +6,11 @@ var settings = {
             RADIUS: 190,
             THICKNESS: 1,
             COLOR: "black"
+        },
+        GRADIENT: {
+            FIRST: "green",
+            SECOND: "yellow",
+            THIRD: "red"
         }
     },
     DIRECT: {
