@@ -1,5 +1,5 @@
 Math.__proto__.canLineExistInCircle = function(x1,y1,x2,y2,radius){
-    return (Math.sqrt(Math.pow(x1 - x2,2) + Math.pow(y1 - y2,2)) <= radius);
+    return (Math.sqrt(Math.pow(x1 - x2,2) + Math.pow(y1 - y2,2)) <= radius+1);
 };
 
 Math.__proto__.calculateAngleInCircle = function(x,y){
@@ -12,4 +12,8 @@ Math.__proto__.calculateAngleInCircle = function(x,y){
 Math.__proto__.getRadiusRatio = function(x1,y1,x2,y2,radius){
     var line = parseInt(Math.sqrt(Math.pow(x1 - x2,2) + Math.pow(y1 - y2,2)));
     return parseFloat((line / radius) * 100).toFixed(0); 
+};
+
+Math.__proto__.swapPointsToLine = function(x1,y1,x2,y2){
+  return parseInt(Math.sqrt(Math.pow(x1 - x2,2) + Math.pow(y1 - y2,2)));  
 };
