@@ -54,6 +54,7 @@ var canvas = (function () {
         var center = this.getCenter();
         
         this._ctx.beginPath();
+        this._ctx.lineWidth = settings.CANVAS.ARC.THICKNESS;
         this._ctx.arc(center.x, center.y, settings.CANVAS.ARC.RADIUS, 0, 2 * Math.PI);
         this._ctx.strokeStyle = settings.CANVAS.ARC.COLOR;
         this._ctx.stroke();
@@ -70,7 +71,7 @@ var canvas = (function () {
             gradient.addColorStop(1,"#FF8F00");
         } else {
             gradient.addColorStop(0,"#FFEBEE");
-            gradient.addColorStop(1,"#D50000");
+            gradient.addColorStop(1,"#D84315");
         }
         
         this._ctx.beginPath();
