@@ -17,7 +17,7 @@ module.exports = {
 			Car.spinRight(data.degree);
 		if(data.direction.y == 3)
 			Car.forward();
-		else if(data.direct.y == 4)
+		else if(data.direction.y == 4)
 			Car.backward();
 		if(data.power == 0)
 			Car.stop();

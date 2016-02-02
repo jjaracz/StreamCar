@@ -23,7 +23,7 @@ module.exports = {
     for (var i in sails.config.enginePWM) {
       PWM_PINS[i] = new PWM({pin: sails.config.enginePWM[i]});
     }
-    SENSOR_PINS[]
+    //SENSOR_PINS[] = GPIO_PINS;
     sails.log(GPIO_PINS);
     sails.log(PWM_PINS);
   },
@@ -56,6 +56,6 @@ module.exports = {
   },
   distanceOn: function(){
     DISTANCE = true;
-    
+
   }
 };
