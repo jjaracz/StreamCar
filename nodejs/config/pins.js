@@ -19,3 +19,7 @@ module.exports.sensorPins = {
   echo: 'GPIO25',
   trig: 'GPIO24'
 };
+module.exports.distance = {
+  timeout: 33,
+  distance: 20
+};

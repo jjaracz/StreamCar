@@ -8,7 +8,9 @@
 var raspi = require('raspi'),
   GPIO = require('raspi-gpio'),
   PWM = require('raspi-pwm'),
-  DISTANCE = false;
+  UNSONIC = require('r-pi-usonic'),
+  DISTANCE = false,
+  DISTANCE_INTERVAL,
   GPIO_PINS = {},
   PWM_PINS = {},
   SENSOR_PINS = {};
@@ -23,7 +25,7 @@ module.exports = {
     for (var i in sails.config.enginePWM) {
       PWM_PINS[i] = new PWM({pin: sails.config.enginePWM[i]});
     }
-    //SENSOR_PINS[] = GPIO_PINS;
+    DISTANCE = USONIC.sensor(sails.config.sensorPins.trig, sails.config.sensorPins.echo, 1000);
     sails.log(GPIO_PINS);
     sails.log(PWM_PINS);
   },
@@ -52,10 +54,14 @@ module.exports = {
     GPIO_PINS.enginePowerBack.write(GPIO.LOW);
   },
   distanceOff: function(){
-    DISTANCE = false;
+    clearInterval(DISTANCE_INTERVAL);
   },
   distanceOn: function(){
-    DISTANCE = true;
-
+    var distance;
+    DISTANCE_INTERVAL = setInterval(function(){
+      distance = DISTANCE().toFixed(2);
+      if(distance == sails.config.distance.distance)
+        sails.io.emit("colisionDetect", {distance: distance});
+    }, sails.config.distance.timeout)
   }
 };
