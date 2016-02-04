@@ -65,6 +65,7 @@ Emituję zdarzenie tylko raz gdy odległość jest mniejsza niż 100 cm:
   sensor: "distance" // albo "beacons"
 }
 ```
+
 #### Znaleziony beacon (Emituję)
 - nazwa zdarzenia: `scanBeacon`
 - dane:
@@ -73,6 +74,15 @@ Emituję zdarzenie tylko raz gdy odległość jest mniejsza niż 100 cm:
   beacon: // informacje o urządzeniu
 }
 ```
+
+#### Włączenia swiatel
+- nazwa zdarzenia: `lightOn`
+- dane: `brak`
+
+#### Wyłączenie swiatel
+- nazwa zdarzenia: `lightOff`
+- dane: `brak`
+
 #### Odbieranie rtsp
 ```
 client = new Websocket('ws://localhost:9999');
