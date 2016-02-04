@@ -42,6 +42,7 @@ module.exports.bootstrap = function(cb) {
         sails.controllers.car.turnon(data);
       });
     });
+    
   });
 
   var stream = new STREAM({
