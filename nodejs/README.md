@@ -65,3 +65,18 @@ Emituję zdarzenie tylko raz gdy odległość jest mniejsza niż 100 cm:
   sensor: "distance" // albo "beacons"
 }
 ```
+#### Znaleziony beacon (Emituję)
+- nazwa zdarzenia: `scanBeacon`
+- dane:
+```
+{
+  beacon: // informacje o urządzeniu
+}
+```
+#### Odbieranie rtsp
+```
+client = new Websocket('ws://localhost:9999');
+player = new jsmpeg(client, {
+    canvas: canvas // Canvas should be a canvas DOM element
+});
+```
