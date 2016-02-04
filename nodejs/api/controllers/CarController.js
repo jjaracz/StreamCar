@@ -30,14 +30,20 @@ module.exports = {
 		else if(data.sensor == 2)
 			Car.beaconOff();
 	},
-	turnOn: function(data){
+	turnon: function(data){
 		if(data.sensor == 1)
 			Car.distanceOn();
 		else if(data.sensor == 2)
 			Car.beaconOn();
 	},
-	getBeacon: function(data){
+	getbeacon: function(data){
 		Car.getBeacon();
 	},
+	lighton: function(){
+		Car.lightOn();
+	},
+	lightoff: function(){
+		Car.lightOff();
+	}
 
 };

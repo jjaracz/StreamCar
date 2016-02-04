@@ -3,23 +3,21 @@
 Global Variable for pins
 
 */
-module.exports.enginePins = {
-  // ENGINE PINS
+module.exports.outPins = {
   engineSpinLeft: 'GPIO17',
   engineSpinRight: 'GPIO23',
   enginePowerForward: 'GPIO27',
-  enginePowerBack: 'GPIO22'
+  enginePowerBack: 'GPIO22',
+  echo: 'GPIO25',
+  light: 'GPIO10'
 };
-module.exports.enginePWM = {
-  // ENGINE PWM PINS
+module.exports.pwmPins = {
   engineSpinPWM: 'GPIO18'
 };
-module.exports.sensorPins = {
-  // DISTANCE SENSOR
-  echo: 'GPIO25',
+module.exports.inPins = {
   trig: 'GPIO24'
 };
-module.exports.distance = {
+module.exports.settings = {
   timeout: 33,
   distance: 20
 };

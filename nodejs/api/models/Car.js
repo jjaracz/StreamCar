@@ -21,15 +21,13 @@ module.exports = {
 
 
   setPins: function(){
-    for (var i in sails.config.enginePins) {
-      GPIO_PINS[i] = new GPIO.DigitalOutput({pin: sails.config.enginePins[i]});
+    for (var i in sails.config.outPins) {
+      GPIO_PINS[i] = new GPIO.DigitalOutput({pin: sails.config.outPins[i]});
     }
-    for (var i in sails.config.enginePWM) {
-      PWM_PINS[i] = new PWM({pin: sails.config.enginePWM[i]});
+    for (var i in sails.config.pwmPins) {
+      PWM_PINS[i] = new PWM({pin: sails.config.pwmPins[i]});
     }
     DISTANCE = USONIC.sensor(sails.config.sensorPins.trig, sails.config.sensorPins.echo, 1000);
-    sails.log(GPIO_PINS);
-    sails.log(PWM_PINS);
   },
   spinLeft: function(degree){
     var pwm = Math.round(90/(degree * 1024));
@@ -55,6 +53,12 @@ module.exports = {
     GPIO_PINS.enginePowerForward.write(GPIO.LOW);
     GPIO_PINS.enginePowerBack.write(GPIO.LOW);
   },
+  lightOn: function(){
+    GPIO_PINS.light.write(GPIO.HIGH);
+  },
+  lightOff: function(){
+    GPIO_PINS.light.write(GPIO.LOW);
+  },
   distanceOff: function(){
     clearInterval(DISTANCE_INTERVAL);
   },
@@ -62,9 +66,9 @@ module.exports = {
     var distance;
     DISTANCE_INTERVAL = setInterval(function(){
       distance = DISTANCE().toFixed(2);
-      if(distance == sails.config.distance.distance)
+      if(distance == sails.config.settings.distance)
         sails.io.emit("colisionDetect", {distance: distance});
-    }, sails.config.distance.timeout)
+    }, sails.config.settings.timeout)
   },
   beaconOn: function(){
     BEACON_STAT = true;
@@ -90,5 +94,5 @@ module.exports = {
         BLEACON.stopScanning();
       });
     }
-  }
+  },
 };

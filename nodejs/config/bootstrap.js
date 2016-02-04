@@ -41,8 +41,26 @@ module.exports.bootstrap = function(cb) {
         sails.log('Turn on '+data.sensor+' sensor.');
         sails.controllers.car.turnon(data);
       });
+
+      // Get specyfic beacon
+      client.on('getBeacon', function(data){
+        sails.log('Get beacon: ' + data);
+        sails.controllers.car.getbeacon(data);
+      });
+
+      // Turn on lights
+      client.on('lightOn', function(){
+        sails.log('Turn on lights');
+        sails.controllers.car.lighton();
+      });
+
+      // Turn off lights
+      client.on('lightOff', function(){
+        sails.log('Turn off lights');
+        sails.controllers.car.lightoff();
+      });
     });
-    
+
   });
 
   var stream = new STREAM({
