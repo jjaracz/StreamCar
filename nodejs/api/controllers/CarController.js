@@ -11,6 +11,10 @@ module.exports = {
 		Car.setPins();
 	},
 	move: function(client, data){
+		if(data.power == 0){
+			Car.stop();
+			return;
+		}
 		if(data.direction.x == 1)
 			Car.spinLeft(data.degree);
 		else if(data.direction.x == 2)
@@ -19,8 +23,6 @@ module.exports = {
 			Car.forward();
 		else if(data.direction.y == 4)
 			Car.backward();
-		if(data.power == 0)
-			Car.stop();
 	},
 	turnoff: function(data){
 		if(data.sensor == 1)
