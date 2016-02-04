@@ -28,13 +28,16 @@ module.exports = {
 		if(data.sensor == 1)
 			Car.distanceOff();
 		else if(data.sensor == 2)
-			Car.beaconsOff();
+			Car.beaconOff();
 	},
 	turnOn: function(data){
 		if(data.sensor == 1)
 			Car.distanceOn();
 		else if(data.sensor == 2)
-			Car.beaconsOn();
-	}
+			Car.beaconOn();
+	},
+	getBeacon: function(data){
+		Car.getBeacon();
+	},
 
 };

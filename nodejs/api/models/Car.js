@@ -9,6 +9,8 @@ var raspi = require('raspi'),
   GPIO = require('raspi-gpio'),
   PWM = require('raspi-pwm'),
   UNSONIC = require('r-pi-usonic'),
+  BLEACON = require('bleacon'),
+  BEACON_STAT = false,
   DISTANCE = false,
   DISTANCE_INTERVAL,
   GPIO_PINS = {},
@@ -63,5 +65,30 @@ module.exports = {
       if(distance == sails.config.distance.distance)
         sails.io.emit("colisionDetect", {distance: distance});
     }, sails.config.distance.timeout)
+  },
+  beaconOn: function(){
+    BEACON_STAT = true;
+    BLEACON.startScanning();
+    BLEACON.on('discover', function(bleacon) {
+      sails.io.emit('scanBeacon', { beacon: bleacon });
+    });
+  },
+  beaconOff: function(){
+    BEACON_STAT = false;
+    BLEACON.stopScanning();
+  },
+  getBeacon: function(data){
+    if(!BEACON_STAT){
+      if(typeof data.uuid !== 'undefined' && typeof data.major !== 'undefined' && typeof data.minor !== 'undefined')
+        BLEACON.startScanning(data.uuid, data.major, data.minor);
+      else if(typeof data.uuid !== 'undefined')
+        BLEACON.startScanning(data.uuid);
+      else
+        return;
+      BLEACON.on('discover', function(beacon){
+        sails.io.emit('scanBeacon', {beacon: beacon});
+        BLEACON.stopScanning();
+      });
+    }
   }
 };
