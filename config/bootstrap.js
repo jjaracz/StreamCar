@@ -8,8 +8,7 @@
  * For more information on bootstrapping your app, check out:
  * http://sailsjs.org/#!/documentation/reference/sails.config/sails.config.bootstrap.html
  */
- var RASPI = require('raspi'),
-    STREAM = require('node-rtsp-stream');
+ var RASPI = require('raspi');
 
 module.exports.bootstrap = function(cb) {
 
@@ -63,11 +62,11 @@ module.exports.bootstrap = function(cb) {
 
   });
 
-  var stream = new STREAM({
-    name: 'name',
-    streamUrl: 'rtsp://192.168.11.233:8554',
-    wsPort: 9999
-  });
+  // var stream = new STREAM({
+  //   name: 'name',
+  //   streamUrl: 'rtsp://192.168.11.233:8554',
+  //   wsPort: 9999
+  // });
 
   // It's very important to trigger this callback method when you are finished
   // with the bootstrap!  (otherwise your server will never lift, since it's waiting on the bootstrap)
