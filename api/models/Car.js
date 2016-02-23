@@ -24,22 +24,22 @@ module.exports = {
     for (var i in sails.config.outPins) {
       GPIO_PINS[i] = new GPIO.DigitalOutput({pin: sails.config.outPins[i]});
     }
-    for (var i in sails.config.pwmPins) {
-      PWM_PINS[i] = new PWM({pin: sails.config.pwmPins[i]});
-    }
-    DISTANCE = USONIC.sensor(sails.config.sensorPins.trig, sails.config.sensorPins.echo, 1000);
+    // for (var i in sails.config.pwmPins) {
+    //   PWM_PINS[i] = new PWM({pin: sails.config.pwmPins[i]});
+    // }
+    // DISTANCE = USONIC.sensor(sails.config.sensorPins.trig, sails.config.sensorPins.echo, 1000);
   },
   spinLeft: function(degree){
     var pwm = Math.round(90/(degree * 1024));
     GPIO_PINS.engineSpinRight.write(GPIO.LOW);
     GPIO_PINS.engineSpinLeft.write(GPIO.HIGH);
-    PWM_PINS.engineSpinPWM.write(pwm);
+    // PWM_PINS.engineSpinPWM.write(pwm);
   },
   spinRight: function(degree){
     var pwm = Math.round(90/(degree * 1024));
     GPIO_PINS.engineSpinLeft.write(GPIO.LOW);
     GPIO_PINS.engineSpinRight.write(GPIO.HIGH);
-    PWM_PINS.engineSpinPWM.write(pwm);
+    // PWM_PINS.engineSpinPWM.write(pwm);
   },
   forward: function(){
     GPIO_PINS.enginePowerBack.write(GPIO.LOW);
