@@ -7,7 +7,7 @@
 
 var raspi = require('raspi'),
   GPIO = require('raspi-gpio'),
-  PWM = require('raspi-pwm'),
+  PWM = require('raspi-pwm').PWM,
   UNSONIC = require('r-pi-usonic'),
   BLEACON = require('bleacon'),
   BEACON_STAT = false,
@@ -24,34 +24,52 @@ module.exports = {
     for (var i in sails.config.outPins) {
       GPIO_PINS[i] = new GPIO.DigitalOutput({pin: sails.config.outPins[i]});
     }
-    // for (var i in sails.config.pwmPins) {
-    //   PWM_PINS[i] = new PWM({pin: sails.config.pwmPins[i]});
-    // }
+     for (var i in sails.config.pwmPins) {
+       PWM_PINS[i] = new PWM({pin: sails.config.pwmPins[i]});
+     }
     // DISTANCE = USONIC.sensor(sails.config.sensorPins.trig, sails.config.sensorPins.echo, 1000);
   },
   spinLeft: function(degree){
-    var pwm = Math.round(90/(degree * 1024));
+    var pwm = Math.round((degree * 1023)/90);
+    sails.log(degree);
+    sails.log("SPIN_LEFT PWM: %n", pwm);
     GPIO_PINS.engineSpinRight.write(GPIO.LOW);
     GPIO_PINS.engineSpinLeft.write(GPIO.HIGH);
-    // PWM_PINS.engineSpinPWM.write(pwm);
+    PWM_PINS.engineSpinPWM.write(pwm);
   },
   spinRight: function(degree){
-    var pwm = Math.round(90/(degree * 1024));
+    var pwm = Math.round((degree * 1023)/90);
+    sails.log(degree);
+    sails.log("SPIN_RIGHT PWM: %n", pwm);
     GPIO_PINS.engineSpinLeft.write(GPIO.LOW);
     GPIO_PINS.engineSpinRight.write(GPIO.HIGH);
-    // PWM_PINS.engineSpinPWM.write(pwm);
+    PWM_PINS.engineSpinPWM.write(pwm);
   },
-  forward: function(){
+  forward: function(power){
+    var pwm = Math.round((power * 1023)/100);
+    sails.log(power);
+    sails.log("FORWARD PWM: " + pwm);
     GPIO_PINS.enginePowerBack.write(GPIO.LOW);
     GPIO_PINS.enginePowerForward.write(GPIO.HIGH);
+    PWM_PINS.enginePowerPWM.write(pwm);
   },
-  backward: function(){
+  backward: function(power){
+    var pwm = Math.round((power * 1023)/100);
+    sails.log(power);
+    sails.log("BACKWARD PWM: " + pwm);
     GPIO_PINS.enginePowerForward.write(GPIO.LOW);
     GPIO_PINS.enginePowerBack.write(GPIO.HIGH);
+    PWM_PINS.enginePowerPWM.write(pwm);
   },
   stop: function(){
     GPIO_PINS.enginePowerForward.write(GPIO.LOW);
     GPIO_PINS.enginePowerBack.write(GPIO.LOW);
+    PWM_PINS.enginePowerPWM.write(0);
+  },
+  stopSpin: function(){
+    GPIO_PINS.engineSpinLeft.write(GPIO.LOW);
+    GPIO_PINS.engineSpinRight.write(GPIO.LOW);
+    PWM_PINS.engineSpinPWM.write(0);
   },
   lightOn: function(){
     GPIO_PINS.light.write(GPIO.HIGH);

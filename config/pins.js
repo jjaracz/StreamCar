@@ -5,14 +5,15 @@ Global Variable for pins
 */
 module.exports.outPins = {
   engineSpinLeft: 'GPIO17',
-  engineSpinRight: 'GPIO23',
-  enginePowerForward: 'GPIO27',
-  enginePowerBack: 'GPIO22',
+  engineSpinRight: 'GPIO27',
+  enginePowerForward: 'GPIO22',
+  enginePowerBack: 'GPIO23',
   echo: 'GPIO25',
-  light: 'GPIO10'
+  light: 'GPIO8'
 };
 module.exports.pwmPins = {
-  engineSpinPWM: 'GPIO18'
+  engineSpinPWM: 'GPIO12',
+  enginePowerPWM: 'GPIO19'
 };
 module.exports.inPins = {
   trig: 'GPIO24'

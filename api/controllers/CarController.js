@@ -11,18 +11,23 @@ module.exports = {
 		Car.setPins();
 	},
 	move: function(client, data){
-		if(data.power == 0){
-			Car.stop();
+		data.power = parseInt(data.power);
+		data.degree = parseInt(data.degree);
+		if(data.power == 0 && data.degree == 0){
+			Car.stopSpin();
 			return;
+		}else if(data.power == 0){
+			Car.stop();
+			return
 		}
 		if(data.direction.x == 1)
 			Car.spinLeft(data.degree);
 		else if(data.direction.x == 2)
 			Car.spinRight(data.degree);
 		if(data.direction.y == 3)
-			Car.forward();
+			Car.forward(data.power);
 		else if(data.direction.y == 4)
-			Car.backward();
+			Car.backward(data.power);
 	},
 	turnoff: function(data){
 		if(data.sensor == 1)
